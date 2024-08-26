@@ -1,0 +1,93 @@
+<?php $__env->startSection('meta_description'); ?>
+        <?php echo e(strip_tags($post->content)); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?>
+        الكلمات الدلالية
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+<?php echo e($post->title); ?> - <?php echo e($setting->title); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('body'); ?>
+ <!-- Breadcrumb Start -->
+ <div class="container-fluid">
+    <div class="container">
+        <nav class="breadcrumb bg-transparent m-0 p-0">
+            <a class="breadcrumb-item" href="#">Home</a>
+            <a class="breadcrumb-item" href="#">Category</a>
+            <a class="breadcrumb-item" href="#">Technology</a>
+            <span class="breadcrumb-item active">News Title</span>
+        </nav>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+
+<!-- News With Sidebar Start -->
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- News Detail Start -->
+                <div class="position-relative mb-3">
+                    <img class="img-fluid w-100" src="<?php echo e(asset($post->image)); ?>" style="object-fit: cover;">
+                    <div class="overlay position-relative bg-light">
+                        <div class="mb-3">
+                            <a href=""><?php echo e($post->category->title); ?></a>
+                            <span class="px-1">/</span>
+                            <span><?php echo e($post->created_at->format('M d,Y')); ?></span>
+                        </div>
+                        <div>
+                            <h3 class="mb-3"><?php echo e($post->title); ?></h3>
+                            <p><?php echo $post->smallDesc; ?></p>
+                            <p><?php echo $post->content; ?></p>
+                            <div class="social-btn-sp">
+                                <?php echo $shareButtons; ?>
+
+                                  <a href="#" class="copy-link-button" data-post-url="<?php echo e($postUrl); ?>">Copy Link</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <!-- News Detail End --> 
+            </div> 
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script>
+    var copyLinkButtons = document.querySelectorAll('.copy-link-button');
+
+    copyLinkButtons.forEach(function (button) {
+        var postUrl = button.getAttribute('data-post-url');
+
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var tempInput = document.createElement('input');
+            tempInput.value = postUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            alert('Link copied!');
+        });
+    });
+
+</script>
+
+
+
+
+    
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('website.layout.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\NewApps\website_news\resources\views/website/post.blade.php ENDPATH**/ ?>

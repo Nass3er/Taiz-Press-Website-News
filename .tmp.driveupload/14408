@@ -1,0 +1,47 @@
+const menuBtn = document.querySelector('.menu');
+const menu = document.querySelector('.mobile');
+const language = document.querySelector('.language');
+const toUpBtn = document.querySelector('.to-up');
+let langu = localStorage.getItem('lang');
+
+document.addEventListener('DOMContentLoaded',()=>{
+   if(langu) {
+      if(langu == 'ar') {
+         language.selectedIndex  = 0;
+      } else {
+         language.selectedIndex  = 1;
+      }
+   }
+})
+
+menuBtn.onclick = ()=>{
+   menu.classList.toggle('active');
+}
+
+language.onchange = (e)=>{
+   if(e.target.value == 'ar') {
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
+      localStorage.setItem('lang','ar');
+   } else {
+      document.documentElement.lang = 'en';
+      document.documentElement.dir = 'ltr';
+      localStorage.setItem('lang','en');
+   }
+
+}
+
+document.onscroll = (e)=> {
+   if(scrollY >= 1000) {
+      toUpBtn.classList.add('active');
+   } else {
+      toUpBtn.classList.remove('active')
+   }
+}
+
+toUpBtn.onclick = ()=>{
+   scrollTo({
+      top:0,
+      behavior: "smooth"
+   });
+}

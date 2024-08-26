@@ -1,0 +1,99 @@
+<?php $__env->startSection('meta_description'); ?>
+        <?php echo e($category->content); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?>
+        الكلمات الدلالية
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+<?php echo e($category->title); ?> - <?php echo e($setting->title); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <nav class="breadcrumb bg-transparent m-0 p-0">
+                <a class="breadcrumb-item" href="#">Home</a>
+                <a class="breadcrumb-item" href="#">Category</a>
+                <span class="breadcrumb-item active">Technology</span>
+            </nav>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                                <h3 class="m-0">Technology</h3>
+                                <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                            </div>
+                        </div>
+
+                        <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="col-lg-4">
+                                <div class="position-relative mb-3">
+                                    <img class="img-fluid w-100" src="<?php echo e(asset($category->image)); ?>" style="object-fit: cover;">
+                                    <div class="overlay position-relative bg-light">
+                                        <div class="mb-2" style="font-size: 14px;">
+                                            <a href=""><?php echo e($category->title); ?></a>
+                                        </div>
+                                        <a class="h4" href=""><?php echo e($category->title); ?></a>
+                                        <p class="m-0"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <a href=""><img class="img-fluid w-100" src="img/ads-700x70.jpg" alt=""></a>
+                    </div>
+
+                    <div class="row">
+                        <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="col-lg-6">
+                                <div class="d-flex mb-3">
+                                    <img src="<?php echo e(asset($post->image)); ?>"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                    <div class="w-100 d-flex flex-column justify-content-center bg-light px-3"
+                                        style="height: 100px;">
+                                        <div class="mb-1" style="font-size: 13px;">
+                                            <a href=""><?php echo e($category->title); ?></a>
+                                            <span class="px-1">/</span>
+                                            <span><?php echo e($post->created_at->format('M d,Y')); ?></span>
+                                        </div>
+                                        <a class="h6 m-0" href="<?php echo e(route('post',$post->id)); ?>"><?php echo e($post->title); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                           
+                            <nav aria-label="Page navigation">
+                                <?php echo e($posts->links()); ?>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- News With Sidebar End -->
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('website.layout.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\NewApps\website_news\resources\views/website/category.blade.php ENDPATH**/ ?>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="{{ LaravelLocalization::getCurrentLocale() }}" dir="{{ LaravelLocalization::getCurrentLocale() === 'en' ? 'ltr' : 'rtl' }}">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+         name="description"
+         content="هو موقع اخباري يتناول كل ما يخص الاخبار المحلية والعالمية"
+      />
+      <link href="{{ asset('adminassets/dest/style.css') }}" rel="stylesheet">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+      {{-- /////bootstrap files --}}
+      {{-- <link rel="stylesheet" href="{{asset('front2')}}/css/all.min.css">
+      <link rel="stylesheet" href="{{asset('front2')}}/css/bootstrap.min.css">
+      <link rel="stylesheet" href="{{asset('front2')}}/css/bootstrap.min.css.map">
+      --}}
+      <!-- Main styles for this application -->
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+      {{-- ////end bootstrap files --}}
+      <link rel="stylesheet" href="{{asset('front2')}}/css/header.css">
+      <link rel="stylesheet" href="{{asset('front2')}}/css/main.css" />
+      <link rel="stylesheet" href="{{asset('front2')}}/css/footer.css">
+      <link rel="stylesheet" href="{{asset('front2')}}/css/normalize.css" />
+      <script src="{{asset('front2')}}/js/lang.js"></script>
+      <title>{{$setting->translate(app()->getlocale())->title}}</title>
+   </head>
+   <body>
+      <header>
+         <nav class="nav main-nav" dir="{{ LaravelLocalization::getCurrentLocale() === 'en' ? 'ltr' : 'rtl' }}">
+            <div class="logo">
+               <!-- <span> تعز برس </span> -->
+               <img src="./assets/image/Coat-of-arms-of-Yemen.png" alt="logo"
+               width="100%"
+               height="100%"
+               >
+            </div>
+            <ul class="mobile">
+              <li><a href="{{Route('index')}}" class="active">   الرئيسية </a></li>
+              @if(count($categories) > 0)
+             
+                   @foreach ($categories as $key => $category)
+                       <li><a href="{{Route('category',$category->id)}}" > {{ $category->title }} </a></li>
+                   @endforeach
+             
+              @else
+               <p>No categories available.</p>
+              @endif
+            </ul>
+
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                   <span class="">{{ LaravelLocalization::getCurrentLocaleNative() }}</span>
+               </a>
+               <div class="dropdown-menu dropdown-menu-right">
+                   @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                   <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                       {{ $properties['native'] }}
+                   </a>
+                   @endforeach
+               </div>
+           </li>
+
+            <div class="language-menu ">
+               <!-- language options -->
+                
+
+               <div class="menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                     <path
+                        d="M0 7.5L0 12.5L50 12.5L50 7.5 Z M 0 22.5L0 27.5L50 27.5L50 22.5 Z M 0 37.5L0 42.5L50 42.5L50 37.5Z"
+                        fill="#fff"
+                     />
+                  </svg>
+               </div>
+            </div>
+         </nav>
+         <!-- / /////////////////////////// -->
+      </header>
+
+      <!-- start main -->
+     @yield('body')
+      <!-- end main -->
+
+      <!-- start footer -->
+      <footer>
+         <div class="container1">
+            <div class="top-footer">
+               <div class="logo-foot">
+                  <h2>تعز برس</h2>
+                  <p>الموقع الرسمي المتحدث باسم السلطة المحلية في محافظة تعز</p>
+               </div>
+               <div class="departments">
+                  <h3>{{trans('words.categories')}}</h3>
+                  <div class="depart-list">
+                     <ul>
+                       @if(count($categories) > 0)
+                       @foreach ($categories as $key => $category)
+                        <li>
+                           <a href="{{Route('category',$category->id)}}" >
+                              <span>
+                                 <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z"/></svg>
+                              </span>
+                              <span>{{ $category->title }} </a></span> 
+                        </li>
+                        @endforeach
+                        @endif
+                        
+                     </ul>
+                  </div>
+               </div>
+               <div class="contact-us">
+                  <h3>تواصل معنا</h3>
+                  <ul>
+                     <li>
+                        <a href="#">
+                           <span>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                                 <path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5q-3.3 .7-104.6 69.1-14.8 10.2-26.9 9.9c-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3q.8-6.7 18.5-13.7 108.4-47.2 144.6-62.3c68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9a10.5 10.5 0 0 1 3.5 6.7A43.8 43.8 0 0 1 363 176.7z"></path>
+                              </svg>
+                           </span>
+                           <span>تيليغرام</span>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                           <span>
+                              <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                    <path class="twitter" d="M2315 5109 c-800 -83 -1501 -518 -1927 -1196 -604 -961 -490 -2237
+                        274 -3068 425 -462 951 -737 1583 -827 119 -17 512 -16 635 1 622 86 1148 360
+                        1572 820 349 378 572 862 650 1406 17 118 17 512 0 630 -59 416 -191 769 -410
+                        1099 -92 140 -185 254 -315 385 -399 404 -893 653 -1462 737 -123 18 -478 26
+                        -600 13z m27 -1592 c207 -302 379 -549 382 -550 3 -1 218 246 479 548 l473
+                        550 128 3 c75 1 126 -1 124 -7 -1 -5 -123 -148 -269 -317 -146 -170 -390 -454
+                        -542 -631 l-277 -321 531 -774 c292 -425 560 -815 596 -865 l64 -93 -439 0
+                        -439 0 -398 580 c-219 319 -401 580 -404 579 -3 0 -229 -260 -501 -577 l-496
+                        -577 -132 -3 -132 -3 574 668 574 667 -32 46 c-36 49 -1071 1557 -1101 1603
+                        l-17 27 438 -2 439 -3 377 -548z"></path>
+                                    <path d="M2359 2558 l918 -1313 196 -3 c108 -1 197 1 197 5 0 5 -411 595 -913
+                        1313 l-913 1305 -202 3 -201 2 918 -1312z"></path>
+                                 </g>
+                              </svg>
+                           </span>
+                           <span>اكس</span>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                           <span>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                 <path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"></path>
+                              </svg>
+                           </span>
+                           <span>فيسبوك</span>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                           <span>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
+                                 <path d="M34,19.681A13.057,13.057,0,1,1,20.943,6.627,13.057,13.057,0,0,1,34,19.681Z" transform="translate(-7.889 -6.627)"></path>
+                                 <g transform="translate(5.1 5.053)">
+                                    <path d="M24.406,13.575a7.954,7.954,0,0,0-7.745-6.137,9.533,9.533,0,0,0-1.52.162A7.924,7.924,0,0,0,9.707,19.164a.517.517,0,0,1,.069.393c-.368,1.209-.71,2.461-1.041,3.689-.05.218-.05.218.15.156,1.29-.349,2.561-.673,3.851-.991a.3.3,0,0,1,.28.019,7.949,7.949,0,0,0,11.39-8.854Zm-6.63,8.306a3.366,3.366,0,0,1-.916.081,6.841,6.841,0,0,1-3.583-.916.426.426,0,0,0-.405-.069c-.717.181-1.414.368-2.125.548-.15.05-.162.025-.131-.125.187-.66.368-1.327.573-2.013a.5.5,0,0,0-.081-.467,6.544,6.544,0,0,1,.231-7.39,6.283,6.283,0,0,1,6.717-2.586,6.227,6.227,0,0,1,5.041,5A6.544,6.544,0,0,1,17.776,21.881Z" transform="translate(-8.708 -7.438)" fill="#fff" fill-rule="evenodd"></path>
+                                    <path d="M15.428,15.6a2.191,2.191,0,0,1-.822-.112,8.049,8.049,0,0,1-4.293-3.153,4.5,4.5,0,0,1-.922-1.869,2.164,2.164,0,0,1,.71-2.125,1.26,1.26,0,0,1,1.059-.162,1.157,1.157,0,0,1,.181.218c.224.561.461,1.084.692,1.626a.459.459,0,0,1-.031.336,3.121,3.121,0,0,1-.492.648.3.3,0,0,0-.044.436,5.268,5.268,0,0,0,2.71,2.324.3.3,0,0,0,.405-.087c.206-.231.405-.486.592-.735a.341.341,0,0,1,.442-.118c.393.181.773.368,1.146.536a1.412,1.412,0,0,0,.268.118c.393.2.393.231.343.648-.05.829-.685,1.246-1.414,1.452A1.392,1.392,0,0,1,15.428,15.6Z" transform="translate(-5.4 -3.871)" fill="#fff" fill-rule="evenodd"></path>
+                                 </g>
+                              </svg>
+                           </span>
+                           <span>هاتف</span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="copy-right">
+               <span>جميع الحقوق محفوظة © 2024 موقع تعز برس</span>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+
+      <script src="{{asset('front2/js/main.js')}}"></script>
+      {{-- <script   src="{{asset('front2/js/all.min.js')}}">
+      <script   src="{{asset('front2/js/bootstrap.min.js')}}">
+      <script   src="{{asset('front2/js/bootstrap.min.js.map')}}"> --}}
+      <script src="{{ asset('adminassets/js/libs/jquery.min.js') }}"></script>
+      <script src="{{ asset('adminassets/js/libs/bootstrap.min.js') }}"></script>
+   </body>
+</html>

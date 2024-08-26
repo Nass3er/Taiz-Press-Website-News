@@ -1,0 +1,72 @@
+<div class="sidebar" >
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo e(route('dashboard.index')); ?>"><i class="icon-speedometer"></i> <?php echo e(trans('words.dashboard')); ?>
+
+                </a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>
+                    <?php echo e(trans('words.categories')); ?></a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view', $setting)): ?>
+                            <a class="nav-link" href="<?php echo e(route('dashboard.category.create')); ?>"><i
+                                    class="icon-user-follow"></i><?php echo e(trans('words.add category')); ?></a>
+                        <?php endif; ?>
+                        <a class="nav-link" href="<?php echo e(route('dashboard.category.index')); ?>"><i
+                                class="icon-people"></i>
+                            <?php echo e(trans('words.categories')); ?></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>
+                    <?php echo e(trans('words.posts')); ?></a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo e(route('dashboard.posts.create')); ?>"><i
+                                class="icon-user-follow"></i><?php echo e(trans('words.add post')); ?></a>
+                        <a class="nav-link" href="<?php echo e(route('dashboard.posts.index')); ?>"><i
+                                class="icon-people"></i>
+                            <?php echo e(trans('words.posts')); ?></a>
+                    </li>
+                </ul>
+            </li>
+
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view', $setting)): ?>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>
+                        <?php echo e(trans('words.users')); ?></a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo e(route('dashboard.users.create')); ?>"><i
+                                    class="icon-user-follow"></i><?php echo e(trans('words.add user')); ?></a>
+                            <a class="nav-link" href="<?php echo e(route('dashboard.users.index')); ?>"><i
+                                    class="icon-people"></i>
+                                <?php echo e(trans('words.users')); ?></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo e(route('dashboard.settings')); ?>"><i class="icon-people"></i>
+                        <?php echo e(trans('words.settings')); ?></a>
+                </li>
+            <?php endif; ?>
+
+
+            
+            
+        </ul>
+
+
+
+
+        
+
+        
+    </nav>
+</div>
+<?php /**PATH C:\xampp\htdocs\NewApps\website_news\resources\views/dashboard/layouts/sidebar.blade.php ENDPATH**/ ?>

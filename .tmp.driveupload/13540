@@ -1,0 +1,126 @@
+<?php $__env->startSection('body'); ?>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><?php echo e(trans('words.dashboard')); ?></li>
+        <li class="breadcrumb-item"><a href="#"><?php echo e(trans('words.dashboard')); ?></a>
+        </li>
+        <li class="breadcrumb-item active"><?php echo e(trans('words.categories')); ?></li>
+
+        <!-- Breadcrumb Menu-->
+        <li class="breadcrumb-menu">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
+                <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;<?php echo e(trans('words.dashboard')); ?></a>
+                <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;<?php echo e(trans('words.categories')); ?></a>
+            </div>
+        </li>
+    </ol>
+
+
+    
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" >
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> <?php echo e(trans('words.posts')); ?>
+
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered yajra-table" id="table_id">
+                                <thead style="background-color: #0784f8; color: white;">
+                                    <tr>
+                                        <th><?php echo e(trans('words.title of new')); ?></th>
+                                        <th><?php echo e(trans('words.parent')); ?></th>
+                                        <th><?php echo e(trans('words.Action')); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table content goes here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <form action="<?php echo e(Route('dashboard.posts.delete')); ?>" method="POST">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <?php echo csrf_field(); ?>
+
+                <div class="form-group">
+                    <p><?php echo e(trans('words.sure delete')); ?></p>
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" name="id" id="id">
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal"><?php echo e(trans('words.close')); ?></button>
+                <button type="submit" class="btn btn-danger"><?php echo e(trans('words.delete')); ?> </button>
+            </div>
+        </div>
+    </form>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+<?php $__env->startPush('javascripts'); ?>
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#table_id').DataTable({
+                processing: true,
+                serverSide: true,
+              
+                ajax: "<?php echo e(Route('dashboard.posts.all')); ?>",
+                columns: [
+                 
+                    {
+                        data: 'title',
+                        name: 'title'
+                    },
+                    {
+                        data: 'category_name',
+                        name: 'category_name'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                    }
+                ]
+            });
+
+        });
+
+        $('#table_id tbody').on('click', '#deleteBtn', function(argument) {
+            var id = $(this).attr("data-id");
+            console.log(id);
+            $('#deletemodal #id').val(id);
+        })
+    </script>
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('dashboard.layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\NewApps\website_news\resources\views/dashboard/posts/index.blade.php ENDPATH**/ ?>

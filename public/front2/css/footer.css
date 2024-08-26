@@ -1,0 +1,91 @@
+/* start footer */
+
+footer {
+   background-color:  rgb(3 36 143);
+   padding: 30px 15px;
+}
+
+.top-footer {
+   display: grid;
+   grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+   gap: 10px;
+   padding-block: 20px;
+   /* display: flex; */
+}
+@media (max-width:778px) {
+   .top-footer {
+      gap: 20px;
+   }
+}
+.logo-foot {
+   color: #ffffff;
+}
+.logo-foot h2{
+   margin-bottom: 10px;
+}
+.logo-foot p{
+   width: 200px;
+   line-height: 1.5;
+}
+.departments {
+   color: #ffffff;
+}
+.departments h3{
+   margin-bottom: 10px;
+}
+.depart-list {
+   display: flex;
+   width: 100%;
+   gap: 20px;
+}
+.depart-list ul li a{
+   color: #fff;
+   padding: 5px;
+   display: flex;
+   gap: 7px;
+   text-decoration: none;
+   transition: all .3s;
+}
+.depart-list ul li a:hover {
+   letter-spacing: 1px;
+}
+
+.depart-list ul li a span{
+   font-size: 14px;
+}
+
+.contact-us h3{
+   margin-bottom: 10px;
+   color: #fff;
+}
+.contact-us ul li a{
+   color: #fff;
+   text-decoration: none;
+   display: flex;
+   flex-direction:row;
+   gap: 10px;
+   padding: 5px;
+}
+.contact-us ul li a span i{
+   width: 20px;
+   height: 20px;
+}
+
+.copy-right {
+   color: #fff;
+   text-align: center;
+}
+
+.contact-us .facebook{
+   background-color: #1877f2;
+}
+.contact-us .twitter{
+   background-color: #1da1f2;
+}
+.contact-us .linkedin{
+   background-color: #0077b5;
+}
+.contact-us .youtube{
+   background-color: #ff0000;
+}
+/* end footer */

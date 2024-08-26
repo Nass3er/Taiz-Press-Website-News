@@ -1,0 +1,36 @@
+
+
+.yajra-table td{
+    word-wrap: break-word;
+}
+.yajra-table{
+    word-wrap: break-word;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+header.navbar .navbar-nav .nav-link {
+   
+    margin-right: 25px;
+}
+
+ 
+.navbar-nav .open > .nav-link, .navbar-nav .open > .nav-link:focus, .navbar-nav .open > .nav-link:hover,
+ .navbar-nav .active > .nav-link, .navbar-nav .active > .nav-link:focus, 
+ .navbar-nav .active > .nav-link:hover, .navbar-nav .nav-link.open, .navbar-nav .nav-link.open:focus, 
+ .navbar-nav .nav-link.open:hover, .navbar-nav .nav-link.active, .navbar-nav .nav-link.active:focus, 
+.navbar-nav .nav-link.active:hover {
+    color: #24f5ce;
+}
+
+
+body:not(.top-nav) .sidebar {
+    background: rgb(3 36 143);
+}
+
+.inputstyle{
+    border: 1px solid rgb(3 36 143);
+    border-radius: 15px;
+}
